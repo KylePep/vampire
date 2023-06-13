@@ -173,8 +173,11 @@ function winGame() {
     window.alert('You win')
     return true
   }
-
 }
+
+// function restart() {
+
+// }
 
 //Activated functions
 

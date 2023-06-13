@@ -1,0 +1,14 @@
+body {
+  background-color: rgb(38, 0, 0);
+}
+
+.location {
+  height: 110px;
+  background-color: rgb(140, 0, 0);
+  border: 4mm ridge rgba(100, 0, 0, 0.6);
+  border-radius: 10px;
+}
+
+.shadow {
+  text-shadow: rgb(2, 2, 2) 1px 0 20px;
+}
