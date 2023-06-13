@@ -103,9 +103,10 @@ function randomLocation() {
     let randomNumber = Math.floor(Math.random() * locations.length)
     let randomPlace = locations[randomNumber]
     person.location = randomPlace
-    console.log(person)
+    //console.log(person)
   });
-  drawPeopleLocations
+  drawPeopleLocations();
+  checkHunter();
 }
 
 function drawPeopleLocations() {
@@ -132,16 +133,30 @@ function createVampireHunter() {
   console.log(randomPerson)
 }
 
+function findVampireHunter() {
+  let foundHunter = people.find(person => person.isHunter)
+  return foundHunter;
+}
+
 function attackLocation(underAttack) {
   let targets = people.filter(person => person.location == underAttack);
   console.log(underAttack)
   console.log(targets)
   targets.forEach(victim => victim.picture = '🦇');
-  randomLocation()
+  randomLocation();
 }
+
+function checkHunter() {
+  let bats = people.filter(person => person.picture == '🦇');
+  console.log(bats)
+  let hunter = findVampireHunter();
+  if (bats.find(bat => bat.location == hunter.location)) {
+    window.alert('a bat has found the hunter')
+  }
+}
+
 
 //Activated functions
 
 randomLocation()
-drawPeopleLocations()
 createVampireHunter()
