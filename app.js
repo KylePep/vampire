@@ -1,7 +1,7 @@
 const locations = [
   '🎭', '🎪', '🎢', '🏟️', '🏨',
   '🏤', '🏥', '🏭', '🏢', '🏣',
-  '🏰', '🏬', '🏥', '🏦', '🏪'
+  '🏰', '🏬', '🏦', '🏪'
 ]
 
 const people = [
@@ -84,3 +84,64 @@ const people = [
     location: '',
   }
 ]
+
+// Assign vampireHunter to a random person at the start of the game
+
+// People move to random locations after each round
+
+// if the user clicks on a location with the vampire hunter the player loses the game unless all other people have already been turned.
+
+// hte turned poeple should have their emoji turned into bats
+
+// if a turned person ends up at the same location as the hunter they will notify the user the hunter is near
+
+// The game ends if all people are turned (wins) or the player is slayed by the hunter (loses)
+
+//Built functions
+function randomLocation() {
+  people.forEach(person => {
+    let randomNumber = Math.floor(Math.random() * locations.length)
+    let randomPlace = locations[randomNumber]
+    person.location = randomPlace
+    console.log(person)
+  });
+  drawPeopleLocations
+}
+
+function drawPeopleLocations() {
+  locations.forEach(locale => {
+    let filterPeopleLocations = people.filter(person => person.location == locale)
+    //console.log(filterPeopleLocations)
+
+    let personLocation = document.getElementById(locale)
+
+    let template = ''
+
+    filterPeopleLocations.forEach(person => template += person.picture)
+
+    personLocation.innerText = template
+  })
+
+}
+
+
+function createVampireHunter() {
+  let randomNumber = Math.floor(Math.random() * people.length)
+  let randomPerson = people[randomNumber]
+  randomPerson.isHunter = true;
+  console.log(randomPerson)
+}
+
+function attackLocation(underAttack) {
+  let targets = people.filter(person => person.location == underAttack);
+  console.log(underAttack)
+  console.log(targets)
+  targets.forEach(victim => victim.picture = '🦇');
+  randomLocation()
+}
+
+//Activated functions
+
+randomLocation()
+drawPeopleLocations()
+createVampireHunter()
