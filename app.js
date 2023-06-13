@@ -147,16 +147,36 @@ function attackLocation(underAttack) {
 }
 
 function checkHunter() {
-  let bats = people.filter(person => person.picture == '🦇');
-  console.log(bats)
-  let hunter = findVampireHunter();
-  if (bats.find(bat => bat.location == hunter.location)) {
-    window.alert('a bat has found the hunter')
+  if (winGame()) { return } else {
+    if (loseGame()) { return } else {
+      let bats = people.filter(person => person.picture == '🦇');
+      console.log(bats)
+      let hunter = findVampireHunter();
+      if (bats.find(bat => bat.location == hunter.location)) {
+        window.alert('a bat has found the hunter')
+      }
+    }
   }
 }
 
+function loseGame() {
+  let hunter = findVampireHunter()
+  if (hunter.picture == '🦇') {
+    window.alert('You lose')
+    return true;
+  }
+}
+function winGame() {
+  if (people.find(person => person.picture != '🦇')) {
+    return false
+  } else {
+    window.alert('You win')
+    return true
+  }
+
+}
 
 //Activated functions
 
-randomLocation()
 createVampireHunter()
+randomLocation()
